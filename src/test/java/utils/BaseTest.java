@@ -9,15 +9,15 @@ public class BaseTest {
     protected WebDriver driver;
 
     @BeforeMethod
-    public void setUp(@Optional("chrome") String browser) {
-        if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
-            driver = new ChromeDriver();
-        } else if (browser.equalsIgnoreCase("firefox")) {
+    public void setUp() {
+        String browser = System.getProperty("browser", "chrome");  // default chrome
+
+        if (browser.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
             driver = new FirefoxDriver();
         } else {
-            throw new IllegalArgumentException("Browser no soportado: " + browser);
+            System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+            driver = new ChromeDriver();
         }
 
         driver.manage().window().maximize();
@@ -26,6 +26,16 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
+        /*
+         * Pausa visual para ver el resultado del test antes de cerrar la ventana
+         * Se puede quitar para acelerar mas la ejecucion de los tests
+         */
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         if (driver != null) {
             driver.quit();
         }
