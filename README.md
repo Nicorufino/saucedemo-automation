@@ -13,6 +13,8 @@ Links de descarga de drivers
 
 > Firefox: https://github.com/mozilla/geckodriver/releases
 
+>> Crear una carpeta llamada drivers en la base del proyecto y colocar los drivers dentro de ella
+
 Cómo ejecutar
 > Ejecutar en Chrome (por default)
 >> mvn test
