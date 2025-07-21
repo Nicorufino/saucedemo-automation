@@ -17,5 +17,8 @@ Cómo ejecutar
 >> mvn test
 
 > Ejecutar en Firefox
->>mvn test -Dbrowser=firefox
+>> mvn test -Dbrowser=firefox
 
+Como visualizar los reportes
+>> Luego de la ejecución se genera un reporte en target/surefire-reports/index.html
+>> Clickeando en la opción "Reporter output" del apartado "Info" se puede ver la captura de pantalla de un test fallido
